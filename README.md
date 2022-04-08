@@ -1,8 +1,15 @@
-# BetaCraft Launcher
+# Betacraft
+https://betacraft.uk/
 
-The launcher aims to provide easy access to old Minecraft versions and improve the overall game experience in those versions.
+## Installation
+```sh
+1. Download and install Qt 6.2.4 with WebEngine, WebView, WebSockets, Positioning and WebChannel
 
-## FEATURES:
-- Supports versions from Pre-Classic to 1.5.2
-- GUI translations
-- The launcher can auto-update, so you don't have to re-download it whenever a new version comes out
+https://www.qt.io/download
+
+2. Clone
+
+git clone https://github.com/betacraftuk/betacraft-qt.git
+
+3. Open in Qt Creator and build :)
+```
