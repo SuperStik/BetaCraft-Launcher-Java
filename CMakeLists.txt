@@ -14,6 +14,7 @@ find_package(Qt6 REQUIRED COMPONENTS Widgets WebEngineWidgets WebEngineCore WebC
 add_executable(Betacraft
     MainWindow.cpp MainWindow.h
     main.cpp
+    assets.qrc
 )
 
 target_link_libraries(Betacraft PRIVATE
