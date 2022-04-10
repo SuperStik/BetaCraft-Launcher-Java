@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
     _webView->load(QUrl("http://files.betacraft.uk/launcher/changelog/English.html"));
 
     //Set logo
-    QPixmap logoPix (":/assets/logo.png");
+    QPixmap logoPix (":/Assets/logo.png");
     _logo->setPixmap(logoPix);
 
     //Add tabs
@@ -55,7 +55,9 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowTitle("Betacraft");
     resize(800, 480);
     setMinimumSize(800, 480);
-    //setStyleSheet("background-image: url(:/assets/dirt.png);");
+    setStyleSheet("background-image: url(:/Assets/dirt.png);");
+
+    connect(_playButton, SIGNAL(released()), this, SLOT(onPlayButton()));
 }
 
 //Destructor
@@ -70,4 +72,9 @@ MainWindow::~MainWindow()
     delete _onlineCheckbox;
     delete _logo;
     delete _background;
+}
+
+void MainWindow::onPlayButton()
+{
+    printf("%d", 69);
 }

@@ -20,6 +20,9 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+private slots:
+    void onPlayButton();
+
 private:
     QWebEngineView* _webView;
     QLineEdit* _username;

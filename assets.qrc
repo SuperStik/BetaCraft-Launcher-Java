@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
-        <file>assets/logo.png</file>
-        <file>assets/favicon.png</file>
-        <file>assets/dirt.png</file>
+        <file>Assets/logo.png</file>
+        <file>Assets/favicon.png</file>
+        <file>Assets/dirt.png</file>
     </qresource>
 </RCC>
