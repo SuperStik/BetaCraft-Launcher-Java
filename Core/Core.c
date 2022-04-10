@@ -9,33 +9,9 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-void CreateFileStructure()
+static void CreateSettingsFile(char bcdir[500])
 {
-    char bcdir[500];
     char path[500];
-
-	#if __APPLE__
-        strcpy(bcdir, getenv("HOME"));
-        strcat(bcdir, "/Library/Application Support/.betacraft/");
-	#elif _WIN32
-	    strcpy(bcdir, getenv("APPDATA"));
-        strcat(bcdir, "\\.betacraft\\");
-	#elif __LINUX__
-        strcpy(bcdir, getenv("HOME"));
-        strcat(bcdir, "/.betacraft/");
-    #else
-        logger("Error", "This operating system is not supported")
-    #endif
-
-    //Create directories
-    mkdir(bcdir, 0777);
-
-    for (int i = 0; i<sizeof(directories_array) / sizeof(directories_array[0]); i++)
-    {
-        strcpy(path, bcdir);
-        strcat(path, directories_array[i]);
-        mkdir(path, 0777);
-    }
 
     FILE* bcsettings;
     strcpy(path, bcdir);
@@ -56,8 +32,52 @@ void CreateFileStructure()
     fclose(bcsettings);
 }
 
+static void CreateDirectories(char bcdir[500], char path[500])
+{
+    //Create directories
+    mkdir(bcdir, 0777);
+
+    for (int i = 0; i<sizeof(directories_array) / sizeof(directories_array[0]); i++)
+    {
+        strcpy(path, bcdir);
+        strcat(path, directories_array[i]);
+        mkdir(path, 0777);
+    }
+}
+
+static const char* GetBetacraftDirectory()
+{
+    static char bcdir[500];
+
+	#if __APPLE__
+        strcpy(bcdir, getenv("HOME"));
+        strcat(bcdir, "/Library/Application Support/.betacraft/");
+	#elif _WIN32
+	    strcpy(bcdir, getenv("APPDATA"));
+        strcat(bcdir, "\\.betacraft\\");
+	#elif __LINUX__
+        strcpy(bcdir, getenv("HOME"));
+        strcat(bcdir, "/.betacraft/");
+    #else
+        logger("Error", "This operating system is not supported")
+    #endif
+
+    return bcdir;
+}
+
+void CreateFileStructure()
+{
+    char bcdir[500];
+    char path[500];
+
+    strcpy(bcdir, GetBetacraftDirectory());
+
+    CreateDirectories(bcdir, path);
+    CreateSettingsFile(bcdir);
+}
+
 int main() {
-    CreateFolderStructure();
+    CreateFileStructure();
 
     return 0;
 }
